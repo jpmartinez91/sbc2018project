@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<script src='//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+
+<form class="form-inline justify-content-md-center" style="background-color: #e3f2fd;" id="#myForm" role="form" action="/api_search" method="post">
+<nav class="navbar navbar-expand-lg navbar-light justify-content-md-center">
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="Revista" id="exampleRadios1" value="Revista" >
+    <label class="form-check-label" for="exampleRadios1">
+      Revista
+    </label>
+  </div>
+    <button class="btn btn-default" type="submit">Buscar</button>
+</nav>
+</form>
+
+
+
+
+
+{% if tipo == "Revista" %}
+{% include "static/revistas.html" %}
+{% endif %}
+
+
+{% if tipo == "Editorial" %}
+{% include "static/editorial.html" %}
+{% endif %}
+
+
+{% if tipo == "Pais" %}
+{% include "static/pais.html" %}
+{% endif %}
+
+
+{% endblock body %}

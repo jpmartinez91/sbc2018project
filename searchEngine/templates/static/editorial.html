@@ -1,0 +1,47 @@
+<table id="example" class="table" cellspacing="0" width="100%">
+  <thead class="bg-success">
+    <tr>
+      <th>Revista</th>
+      <th>@email</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th>Revista</th>
+      <th>@email</th>
+    </tr>
+  </tfoot>
+  <tbody class="searchable">
+    {% for p in results %}
+    <tr>
+      <td>{{p.nombre}}</td>
+      <td>
+        {% if p.email != None %}
+         {{p.email}}
+         {% else %}
+        Sin informacion
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  $('#example tfoot th').each(function() {
+    var title = $('#example thead th').eq($(this).index()).text();
+    $(this).html('<input type="text" class="table-primary" placeholder="Buscar ' + title + '" />');
+  });
+  var table = $('#example').DataTable({
+    searching: true
+  });
+  table.columns().eq(0).each(function(colIdx) {
+    $('input', table.column(colIdx).footer()).on('keyup change', function() {
+      table
+      .column(colIdx)
+      .search(this.value)
+      .draw();
+    });
+  });
+});
+</script>

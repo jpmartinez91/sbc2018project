@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<div class="row">
+  <div class="col-sm-7">
+    <div class="card border-primary mb-3" >
+      <div class="card-header text-center">{{nombre}}</div>
+      <div class="card-body text-primary">
+        <p class="card-text  text-justify">{{des}}</p>
+
+        {% if home != "None" %}
+        <p class="card-text">Página Web <a href="{{home}}" target="_blank">{{home}}</a></p>
+        {% endif %}
+
+        {% if doi != 'None' %}
+        <p class="card-text">
+          DOI: <a href="{{doi}}" target="_blank">{{doi}}</a></p>
+        {% endif %}
+        <div class="row text-center">
+          <div class="col-md-6">
+            <h2>Tema de interes</h2>
+            {% for r in results %}
+            <p>{{r.tema}}</p>
+            {% endfor %}
+          </div>
+          <div class="col-sm-6">
+            <h2>Idioma</h2>
+            {% for r in results %}
+            <p>{{r.language}}</p>
+            {% endfor %}
+          </div>
+        </div>
+        <h3 class="text-center"> EDITOR </h3>
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <h5>RESPONSABLE: </h5>
+            <p>
+              {{pubName}}
+            </p>
+          </div>
+          <div class="col-sm-6 text-center">
+            <h5>CONTACTO: </h5>
+            <p>
+              {{mail}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-sm-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{pais}}</h5>
+        <p class="card-text  text-justify">{{resena}}</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+{% endblock body %}
